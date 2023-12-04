@@ -1,0 +1,5 @@
+if(EXISTS "C:/Users/Nazar/Documents/BEJ_decoder/build/tests/mytests[1]_tests.cmake")
+  include("C:/Users/Nazar/Documents/BEJ_decoder/build/tests/mytests[1]_tests.cmake")
+else()
+  add_test(mytests_NOT_BUILT mytests_NOT_BUILT)
+endif()
