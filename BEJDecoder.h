@@ -1,14 +1,9 @@
 #include <stdlib.h>
-
-typedef struct {
-    unsigned int sequence;
-    unsigned char format;
-    unsigned int length;
-    char *value;
-    void *children;
-} bejTuple;
+#include <stdio.h>
+#include "definedTypes.h"
 
 
-int unintHandler(int start, char length, char* data);
+
+void unIntHandler(FILE* source, unsigned int* output);
 void copyArray(char* source, char* dest, int length, int start);
-bejTuple* separateInTuples(char* source, int sourceLength, int startPoint);
+bejTuple* separateInTuples(FILE* source, int startPoint, unsigned int maxCount);

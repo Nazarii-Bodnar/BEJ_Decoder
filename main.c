@@ -1,17 +1,13 @@
 #include "BEJDecoder.h"
+#include "getFromDictionary.h"
 #include "stdio.h"
 
-int generateJSON(bejTuple* source, int sourceLength, FILE* output){
-    for(int i = 0; i < sourceLength; i++){
-        if(source[i].format == 0x00 || source[0].format == 0x01){
-            //recursive call for array or set
-        }
-        else{
-            
-        }
-    }
-}
 
 int main(){
+    FILE* file;
+    fopen_s(&file, "C:/Users/Nazar/Documents/BEJ/RDE-Dictionary/example.bin", "rb");
+    bejTuple* res = separateInTuples(file, 7, 1);
+    fclose(file);
+    free(res);
     return 1;
 }

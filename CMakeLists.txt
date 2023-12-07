@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_COMPILE_WARNING_AS_ERROR OFF)
 
 project(BEJDecoder VERSION 1.0)
-add_executable(decode main.c)
+add_executable(decode main.c getFromDictionary.c BEJDecoder.c)
 
 include(CTest)
 add_subdirectory(external)
