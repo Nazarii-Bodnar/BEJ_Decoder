@@ -29,7 +29,7 @@ entryData* getEntry(FILE* dictionary, int offset, int childCount){
 
 
 char* getName(unsigned short sequence, entryData* entry, FILE* dicionary){
-    int length = entry[sequence].nameLength-1;// -1 to remove terminator
+    int length = entry[sequence].nameLength;
     char* result = (char*)calloc(1, length); 
     unsigned short offset = entry[sequence].nameOffset;
     fseek(dicionary, offset, SEEK_SET);

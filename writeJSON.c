@@ -3,7 +3,7 @@
 
 #include "writeJSON.h"
 
-unsigned int decodeUnnInt(int unnIntLength, int *index, unsigned char* source){
+unsigned int decodeUnnInt(unsigned int unnIntLength, int *index, unsigned char* source){
     if(unnIntLength == 0){
         return 0;
     }
@@ -23,27 +23,30 @@ unsigned int getRealValue(int* index, unsigned char* source){
     return result;
 }
 
-//TODO: add terminator at the end of char array on input
+
 void writeParametr(FILE *output, char *parametr){
     fprintf_s(output, "\"%s\": ", (char*)parametr);
+    free(parametr);
 }
 
 
 void writeString(FILE* output, void* data){
-    fprintf_s(output, "\"%s\",\n", (char*)data);
+    fprintf_s(output, "\"%s\"", (char*)data);
 }
 
-void writeNumber(FILE* output, unsigned int data){
-    fprintf_s(output, "%u,\n", data);
+
+void writeNumber(FILE* output, unsigned char* data, unsigned int length){
+    int index = 0;
+    fprintf_s(output, "%u", decodeUnnInt(length, &index, data));
 }
 
 void writeBoolean(FILE* output, void* data){
     int value = (int)*((char*)data);
     if(value){
-        fprintf_s(output, "%s,\n", "true");
+        fprintf_s(output, "%s", "true");
     }
     else{
-        fprintf_s(output, "%s,\n", "false");
+        fprintf_s(output, "%s", "false");
     }
 
 }
@@ -73,6 +76,10 @@ void writeReal(FILE* output, void* data){
     else{
         sign = '-';
     }
-    fprintf_s(output, "%d.%s%de%c%d,\n", whole, zeros, fraq, sign, exp);
+    fprintf_s(output, "%d.%s%de%c%d", whole, zeros, fraq, sign, exp);
     free(zeros);
+}
+
+void writeNull(FILE* output){
+    fprintf_s(output, "null");
 }
