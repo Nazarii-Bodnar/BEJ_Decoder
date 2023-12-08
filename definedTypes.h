@@ -5,6 +5,7 @@ typedef struct {
     unsigned char format;
     unsigned char flags;
     unsigned int length;
+    unsigned int childCount;
     void *value;
     void *children;
 } bejTuple;
